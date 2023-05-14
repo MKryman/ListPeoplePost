@@ -15,6 +15,10 @@ namespace Homework_03_27.Web.Controllers
             {
                 People = personDb.GetAllPeople()
             };
+            if (TempData["success message"] != null)
+            {
+                vm.Message = (string)TempData["success message"];
+            }
             return View(vm);
         }
 
@@ -28,6 +32,7 @@ namespace Homework_03_27.Web.Controllers
         {
             PersonData personDb = new(conStr);
             personDb.AddPeople(people);
+            TempData["success message"] = $"{people.Count} people added successfully!";
             return Redirect("/");
         }
 

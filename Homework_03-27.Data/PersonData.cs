@@ -21,14 +21,16 @@ namespace Homework_03_27.Data
         {
             var connection = new SqlConnection(_connectionString);
             var command = connection.CreateCommand();
+            connection.Open();
             foreach (Person p in people)
             {
                 command.CommandText="INSERT INTO People(FirstName, LastName, Age) " +
                     "VALUES(@fName, @lName, @age)";
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@fName", p.FirstName);
                 command.Parameters.AddWithValue("@lName", p.LastName);
                 command.Parameters.AddWithValue("age", p.Age);
-                connection.Open();
+               
                 command.ExecuteNonQuery();
             }
         }

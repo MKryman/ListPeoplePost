@@ -5,5 +5,6 @@ namespace Homework_03_27.Web.Models
     public class PersonViewModel
     {
         public List<Person> People { get; set; }
+        public string Message { get; set; }
     }
 }
